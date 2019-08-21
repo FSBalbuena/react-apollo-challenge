@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar'
+import AllCountries from './components/AllCountries'
+
 function App() {
   return (
     <div >
       <Navbar />
-      <h1>Countries</h1>
+      <AllCountries/>
     </div>
   );
 }
