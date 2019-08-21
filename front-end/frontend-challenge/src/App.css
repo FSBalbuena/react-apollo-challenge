@@ -1,0 +1,24 @@
+.navbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px
+}
+
+.navbar-brand{
+  display: flex;
+  flex-direction: row;
+  width:100px;
+  justify-content: flex-start;
+  align-items: center
+}
+.navbar-img{
+  width:50px;
+  margin-right:10px}
+.navbar-link-right{
+  float: right;
+}
+.navbar-link-right:hover{
+  color:blue
+}
