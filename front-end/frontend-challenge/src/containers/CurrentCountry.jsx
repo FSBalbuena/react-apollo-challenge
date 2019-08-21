@@ -6,10 +6,15 @@ import Typography from '@material-ui/core/Typography';
 import CountryLayout from '../components/CountryLayout'
 import CountryCurrencyAndPhone from '../components/CountryCurrencyAndPhone'
 
+import SkeletonCountry from '../components/SkeletonCountry'
+import SkeletonTitle from '../components/SkeletonTitle'
 const useStyles = makeStyles(theme => ({
   title:{
     textAlign:"center",
-    padding:theme.spacing(3)
+    margin:"auto",
+    marginTop:theme.spacing(3),
+    marginBottom:theme.spacing(3),
+    width:"90%"
   }
 }));
 
@@ -35,13 +40,17 @@ export default (props)=>{
   }
   `);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return (
+    <>
+    <SkeletonTitle/>
+    <SkeletonCountry key={"skeleton"}/>
+    </>);
   if (error) return <p>Error :(</p>;
   if(data.country){
-    const country=data.country
+    const country={...data.country,code:codeParams}
     return (
         <>
-        <Typography variant="h1" color="textSecondary" className={classes.title}>
+        <Typography variant="h3" color="textSecondary" className={classes.title}>
               {country.name}
         </Typography>
         <CountryLayout country={country}>

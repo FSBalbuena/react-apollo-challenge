@@ -15,7 +15,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   container:{
-    padding:theme.spacing(3)
+    padding:theme.spacing(3),
+    textAlign:"center"
+
   },
   link:{
       textDecoration:"none"
@@ -29,10 +31,10 @@ export default ()=>{
     direction="column"
     justify="center"
     alignItems="center" className={classes.container}>
-        <Typography variant="h1" component="h1">
+        <Typography variant="h2" component="h1">
             Hi there!
         </Typography>
-        <Typography variant="h2" component="h2">
+        <Typography variant="h4" component="h2">
         Welcome to CountryApp
         </Typography>
         <Typography variant="body1" component="p">

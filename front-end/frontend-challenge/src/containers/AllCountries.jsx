@@ -1,14 +1,18 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import CountryLayout from '../components/CountryLayout'
-
+import { makeStyles } from '@material-ui/core/styles';
+import SkeletonCountry from '../components/SkeletonCountry'
+import SkeletonTitle from '../components/SkeletonTitle'
 const useStyles = makeStyles(theme => ({
   title:{
     textAlign:"center",
-    padding:theme.spacing(3)
+    margin:"auto",
+    marginTop:theme.spacing(3),
+    marginBottom:theme.spacing(3),
+    width:"90%"
   }
 }));
 
@@ -31,16 +35,20 @@ export default ()=>{
   }
   `);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return (
+    <>
+    <SkeletonTitle/>
+    {[1,2,3].map(index=><SkeletonCountry key={index}/>)}
+    </>);
   if (error) return <p>Error :(</p>;
   
   return (
     <>
-    <Typography variant="h1" color="textSecondary" className={classes.title}>
+    <Typography variant="h3" color="textSecondary" className={classes.title}>
           Countries
     </Typography>
     {data.countries
-      .map(country=><CountryLayout country={country}/>)}
+      .map(country=><CountryLayout key={country.name} country={country}/>)}
     </>
   );
 }
