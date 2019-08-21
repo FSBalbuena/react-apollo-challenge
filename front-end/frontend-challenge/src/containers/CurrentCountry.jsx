@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default (props)=>{
+  //code will be deliver by Route component.
    const codeParams=props.match.params.code.toUpperCase()
   const classes = useStyles();
 
@@ -43,21 +44,20 @@ export default (props)=>{
 
   if (loading) return (
     <>
-    <SkeletonTitle/>
-    <SkeletonCountry key={"skeleton"}/>
+      <SkeletonTitle/>
+      <SkeletonCountry key={"skeleton"}/>
     </>);
   if (error) return <ErrorComponent message={"There is a problem fetching the country"}/>;
   if(data.country){
     const country={...data.country,code:codeParams}
     return (
         <>
-        <Typography variant="h3" color="textSecondary" className={classes.title}>
-              {country.name}
-        </Typography>
-        <CountryLayout country={country}>
-          <CountryCurrencyAndPhone currency={country.currency} phone={country.phone}/>
-        </CountryLayout >
-
+          <Typography variant="h3" color="textSecondary" className={classes.title}>
+                {country.name}
+          </Typography>
+          <CountryLayout country={country}>
+            <CountryCurrencyAndPhone currency={country.currency} phone={country.phone}/>
+          </CountryLayout >
         </>
       
   )

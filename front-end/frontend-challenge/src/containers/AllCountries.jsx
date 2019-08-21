@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState}from 'react';
 import Typography from '@material-ui/core/Typography';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import SkeletonCountry from '../components/SkeletonCountry'
 import SkeletonTitle from '../components/SkeletonTitle'
 import ErrorComponent from '../components/ErrorComponent'
+import SearchBar from '../components/SearchBar'
 const useStyles = makeStyles(theme => ({
   title:{
     textAlign:"center",
@@ -19,6 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 export default ()=>{
   const classes = useStyles();
+  const [nameFilter,setNameFilter]=useState("")
   const { loading, error, data } = useQuery(gql`
   {
     countries{
@@ -35,21 +37,24 @@ export default ()=>{
             }
   }
   `);
+  const handleChange=(e)=>setNameFilter(e.target.value)
 
   if (loading) return (
     <>
-    <SkeletonTitle/>
-    {[1,2,3].map(index=><SkeletonCountry key={index}/>)}
+      <SkeletonTitle/>
+      {[1,2,3].map(index=><SkeletonCountry key={index}/>)}
     </>);
   if (error) return <ErrorComponent message={"there is a problem fetching the countries"}/>
   
+  const countries=data.countries.filter(country=>country.name.toLowerCase().indexOf(nameFilter.toLowerCase())>=0)
   return (
     <>
-    <Typography variant="h3" color="textSecondary" className={classes.title}>
+      <Typography variant="h3" color="textSecondary" className={classes.title}>
           Countries
-    </Typography>
-    {data.countries
-      .map(country=><CountryLayout key={country.name} country={country}/>)}
+      </Typography>
+      <SearchBar  value={nameFilter} handleChange={handleChange}/>
+      {countries
+        .map(country=><CountryLayout key={country.name} country={country}/>)}
     </>
   );
 }
