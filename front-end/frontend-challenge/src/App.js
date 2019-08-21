@@ -1,15 +1,21 @@
 import React from 'react';
+import {Route,Switch,Redirect} from 'react-router-dom'
 import './App.css';
 import Navbar from './components/Navbar'
 import AllCountries from './components/AllCountries'
 import CurrentCountry from './components/CurrentCountry'
+import Home from './components/Home'
 
 function App() {
   return (
     <div >
       <Navbar />
-      <CurrentCountry />
-      <AllCountries/>
+      <Switch>
+        <Route path="/" exact component={Home}/>
+        <Route path="/countries" exact component={AllCountries}/>
+        <Route path="/countries/:code" component={CurrentCountry}/>
+        <Redirect to="/"/>
+      </Switch>
     </div>
   );
 }

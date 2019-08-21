@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom' 
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
@@ -32,7 +33,7 @@ export default ()=>{
     </tr>
     {data.countries.map(country=>(
         <tr>
-        <td>{`${country.name}/${country.native}`}</td>
+        <td><Link to={`/countries/${country.code}`}>{`${country.name}/${country.native}`}</Link></td>
         <td>
             <ul>
                 {country.languages?country.languages.map(language=><li>{`${language.name}/${language.native}`}</li>):null}

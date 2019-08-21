@@ -2,12 +2,11 @@ import React from 'react'
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
-export default ()=>{
-   const codeParams="AR"
+export default (props)=>{
+   const codeParams=props.match.params.code.toUpperCase()
   const { loading, error, data } = useQuery(gql`
   {
-    
-      country(code:"${codeParams}"){
+    country(code:"${codeParams}"){
       name,
       native,
       phone,
@@ -20,14 +19,14 @@ export default ()=>{
             native
             },
       }
-
-      }
+  }
   `);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
-
-  return (
+  if(data.country){
+    
+    return (
     <table style={{width:"80%"}}>
     <tr>
       <th>Name</th>
@@ -44,4 +43,8 @@ export default ()=>{
     </tr>
   </table>
   )
+  }
+  else{
+    return <h4>Country No Found</h4>
+  }
 }
