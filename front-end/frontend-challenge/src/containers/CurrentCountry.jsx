@@ -6,10 +6,16 @@ import Typography from '@material-ui/core/Typography';
 import CountryLayout from '../components/CountryLayout'
 import CountryCurrencyAndPhone from '../components/CountryCurrencyAndPhone'
 
+import ErrorComponent from '../components/ErrorComponent'
+import SkeletonCountry from '../components/SkeletonCountry'
+import SkeletonTitle from '../components/SkeletonTitle'
 const useStyles = makeStyles(theme => ({
   title:{
     textAlign:"center",
-    padding:theme.spacing(3)
+    margin:"auto",
+    marginTop:theme.spacing(3),
+    marginBottom:theme.spacing(3),
+    width:"90%"
   }
 }));
 
@@ -35,13 +41,17 @@ export default (props)=>{
   }
   `);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (loading) return (
+    <>
+    <SkeletonTitle/>
+    <SkeletonCountry key={"skeleton"}/>
+    </>);
+  if (error) return <ErrorComponent message={"There is a problem fetching the country"}/>;
   if(data.country){
-    const country=data.country
+    const country={...data.country,code:codeParams}
     return (
         <>
-        <Typography variant="h1" color="textSecondary" className={classes.title}>
+        <Typography variant="h3" color="textSecondary" className={classes.title}>
               {country.name}
         </Typography>
         <CountryLayout country={country}>
@@ -53,6 +63,6 @@ export default (props)=>{
   )
   }
   else{
-    return <h4>Country No Found</h4>
+    return <ErrorComponent message={"Country not found"}/>
   }
 }
