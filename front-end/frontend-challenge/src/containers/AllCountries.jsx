@@ -6,6 +6,7 @@ import CountryLayout from '../components/CountryLayout'
 import { makeStyles } from '@material-ui/core/styles';
 import SkeletonCountry from '../components/SkeletonCountry'
 import SkeletonTitle from '../components/SkeletonTitle'
+import ErrorComponent from '../components/ErrorComponent'
 const useStyles = makeStyles(theme => ({
   title:{
     textAlign:"center",
@@ -40,7 +41,7 @@ export default ()=>{
     <SkeletonTitle/>
     {[1,2,3].map(index=><SkeletonCountry key={index}/>)}
     </>);
-  if (error) return <p>Error :(</p>;
+  if (error) return <ErrorComponent message={"there is a problem fetching the countries"}/>
   
   return (
     <>
