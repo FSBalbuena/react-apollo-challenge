@@ -26,11 +26,11 @@ export default ({message})=>{
             Oops!
         </Typography>
         <Typography variant="h4" component="h2">
-        Something went wrong
+            Something went wrong
         </Typography>
         <Typography variant="body1" component="p">
-        {message}
+           {message}
         </Typography>
-        </Grid>)
+    </Grid>)
         
     }

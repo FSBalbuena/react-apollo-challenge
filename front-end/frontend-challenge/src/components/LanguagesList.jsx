@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
 
   },
   chip:{
-    
+    marginRight:theme.spacing(2)
   }
 }));
 
@@ -29,10 +29,10 @@ export default ({languages})=>{
             justify="flex-start"
             alignItems="center"
             >
-            {languages.map(language=>(
-              <Grid item xs={12} sm={6} md={4}>
-              <Chip label={`${language.name} -${language.native} `} className={classes.chip} color="primary"/>
-            </Grid>
+            {languages.map(language=>(<Chip 
+              key={language.name}
+              label={`${language.name} -${language.native} `} 
+              className={classes.chip} color="primary"/>
             ))}
           </Grid>
         </>

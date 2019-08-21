@@ -20,6 +20,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+//the {children} inside CardContent component will be used by CurrentCountry container.
+
 export default ({country,children})=>{
     const classes = useStyles();
     return (
