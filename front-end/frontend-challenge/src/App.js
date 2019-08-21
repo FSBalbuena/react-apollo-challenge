@@ -13,7 +13,7 @@ function App() {
       <Switch>
         <Route path="/" exact component={Home}/>
         <Route path="/countries" exact component={AllCountries}/>
-        <Route path="/countries/:code" component={CurrentCountry}/>
+        <Route path="/countries/:code" exact component={CurrentCountry}/>
         <Redirect to="/"/>
       </Switch>
     </div>
