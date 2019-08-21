@@ -2,7 +2,7 @@ import React from 'react';
 import {Route,Switch,Redirect} from 'react-router-dom'
 import './App.css';
 import Navbar from './components/Navbar'
-import AllCountries from './components/AllCountries'
+import AllCountries from './containers/AllCountries'
 import CurrentCountry from './components/CurrentCountry'
 import Home from './components/Home'
 
