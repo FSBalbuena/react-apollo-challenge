@@ -33,7 +33,7 @@ export default ({country,children})=>{
                     variant="h4" component={Link} 
                     to={`/countries/${country.code}`} 
                     color="textSecondary">
-                        {country.name}
+                        {`${country.name} (${country.continent.name})`}
                     </Typography>}
               subheader={<Typography  
                     variant="h6" color="textSecondary">

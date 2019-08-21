@@ -19,7 +19,6 @@ export default ()=>{
     countries{
               code,
               name,
-              currency,
               native,
               languages{
                         name,

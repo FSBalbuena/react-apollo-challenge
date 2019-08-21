@@ -3,7 +3,7 @@ import {Route,Switch,Redirect} from 'react-router-dom'
 import './App.css';
 import Navbar from './components/Navbar'
 import AllCountries from './containers/AllCountries'
-import CurrentCountry from './components/CurrentCountry'
+import CurrentCountry from './containers/CurrentCountry'
 import Home from './components/Home'
 
 function App() {

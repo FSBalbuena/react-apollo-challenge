@@ -7,7 +7,9 @@ import { Grid } from '@material-ui/core';
 const useStyles = makeStyles(theme => ({
 
   languageTitle:{
-    paddingBottom:theme.spacing(2)
+    paddingBottom:theme.spacing(2),
+    paddingTop:theme.spacing(2)
+
   },
   chip:{
     
